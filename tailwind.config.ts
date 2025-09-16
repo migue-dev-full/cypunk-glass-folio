@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -47,16 +51,18 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+        // Cyberpunk Neon Colors
+        neon: {
+          purple: "hsl(var(--neon-purple))",
+          green: "hsl(var(--neon-green))",
+          red: "hsl(var(--neon-red))",
+          blue: "hsl(var(--neon-blue))",
         },
+      },
+      backgroundImage: {
+        'gradient-cyber': 'var(--gradient-primary)',
+        'gradient-glass': 'var(--gradient-glass)',
+        'cyber-grid': 'var(--cyber-grid)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,10 +86,37 @@ export default {
             height: "0",
           },
         },
+        "glow-pulse": {
+          "0%, 100%": {
+            boxShadow: "0 0 20px hsl(280 100% 50% / 0.5)",
+          },
+          "50%": {
+            boxShadow: "0 0 40px hsl(280 100% 50% / 0.8), 0 0 60px hsl(280 100% 50% / 0.6)",
+          },
+        },
+        "float": {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+          },
+        },
+        "cyber-scan": {
+          "0%": {
+            transform: "translateX(-100%)",
+          },
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "float": "float 3s ease-in-out infinite",
+        "cyber-scan": "cyber-scan 2s linear infinite",
       },
     },
   },
