@@ -1,51 +1,37 @@
-import { Code, Database, Globe, Smartphone, Server, Zap } from 'lucide-react';
+import { FileText, Palette, Wind, FileCode, Server } from 'lucide-react';
 
 const Skills = () => {
-  const skillCategories = [
+  const skills = [
     {
-      title: "Frontend",
-      icon: <Globe className="w-6 h-6" />,
-      skills: [
-        { name: "React/Next.js", level: 95 },
-        { name: "TypeScript", level: 90 },
-        { name: "Tailwind CSS", level: 88 },
-        { name: "Vue.js", level: 75 }
-      ]
+      name: "HTML",
+      icon: <FileText className="w-8 h-8" />,
+      level: 95,
+      color: "from-orange-500 to-red-500"
     },
     {
-      title: "Backend",
-      icon: <Server className="w-6 h-6" />,
-      skills: [
-        { name: "Node.js", level: 92 },
-        { name: "Python", level: 85 },
-        { name: "PostgreSQL", level: 88 },
-        { name: "MongoDB", level: 80 }
-      ]
+      name: "CSS",
+      icon: <Palette className="w-8 h-8" />,
+      level: 90,
+      color: "from-blue-500 to-blue-600"
     },
     {
-      title: "Mobile",
-      icon: <Smartphone className="w-6 h-6" />,
-      skills: [
-        { name: "React Native", level: 85 },
-        { name: "Flutter", level: 70 },
-        { name: "iOS/Android", level: 75 },
-        { name: "PWA", level: 88 }
-      ]
+      name: "Tailwind CSS",
+      icon: <Wind className="w-8 h-8" />,
+      level: 92,
+      color: "from-cyan-400 to-blue-500"
     },
     {
-      title: "DevOps",
-      icon: <Database className="w-6 h-6" />,
-      skills: [
-        { name: "Docker", level: 85 },
-        { name: "AWS/Azure", level: 82 },
-        { name: "CI/CD", level: 78 },
-        { name: "Kubernetes", level: 70 }
-      ]
+      name: "JavaScript",
+      icon: <FileCode className="w-8 h-8" />,
+      level: 88,
+      color: "from-yellow-400 to-yellow-500"
+    },
+    {
+      name: "Node.js",
+      icon: <Server className="w-8 h-8" />,
+      level: 85,
+      color: "from-green-500 to-green-600"
     }
-  ];
-
-  const tools = [
-    "Git", "Figma", "VS Code", "Postman", "Jira", "Slack", "Linux", "Firebase"
   ];
 
   return (
@@ -63,65 +49,70 @@ const Skills = () => {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {skillCategories.map((category, categoryIndex) => (
-            <div key={category.title} className="glass-card rounded-2xl p-6 hover-glow transition-all duration-300">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center text-white mr-4">
-                  {category.icon}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          {skills.map((skill, index) => (
+            <div 
+              key={skill.name} 
+              className="glass-card rounded-2xl p-8 hover-glow transition-all duration-500 group text-center"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              {/* Icon */}
+              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center group-hover:neon-purple transition-all duration-300">
+                <div className="text-primary group-hover:text-white transition-colors duration-300">
+                  {skill.icon}
                 </div>
-                <h3 className="text-xl font-poppins font-semibold text-foreground">
-                  {category.title}
-                </h3>
               </div>
 
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-inter font-medium text-foreground/90">
-                        {skill.name}
-                      </span>
-                      <span className="text-xs text-primary font-semibold">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-muted/30 rounded-full h-2">
-                      <div 
-                        className="bg-gradient-to-r from-primary to-accent h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ 
-                          width: `${skill.level}%`,
-                          animationDelay: `${categoryIndex * 0.2 + skillIndex * 0.1}s`
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
+              {/* Skill Name */}
+              <h3 className="text-2xl font-poppins font-bold text-foreground mb-4 group-hover:gradient-text transition-all duration-300">
+                {skill.name}
+              </h3>
+
+              {/* Progress Circle */}
+              <div className="relative w-24 h-24 mx-auto mb-4">
+                <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                  {/* Background Circle */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="hsl(var(--muted))"
+                    strokeWidth="8"
+                    fill="none"
+                    className="opacity-20"
+                  />
+                  {/* Progress Circle */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth="8"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeDasharray={`${2.51 * skill.level} 251`}
+                    className="transition-all duration-1000 ease-out drop-shadow-[0_0_8px_hsl(var(--primary))]"
+                    style={{ animationDelay: `${index * 0.2}s` }}
+                  />
+                </svg>
+                {/* Percentage */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-xl font-bold text-primary">
+                    {skill.level}%
+                  </span>
+                </div>
               </div>
+
+              {/* Description */}
+              <p className="text-sm text-muted-foreground font-inter">
+                {skill.name === "HTML" && "Estructura semántica y accesible"}
+                {skill.name === "CSS" && "Diseño responsivo y animaciones"}
+                {skill.name === "Tailwind CSS" && "Framework utility-first"}
+                {skill.name === "JavaScript" && "ES6+ y programación funcional"}
+                {skill.name === "Node.js" && "Backend y APIs RESTful"}
+              </p>
             </div>
           ))}
-        </div>
-
-        {/* Additional Tools */}
-        <div className="glass-card rounded-2xl p-8">
-          <div className="flex items-center mb-6">
-            <Zap className="w-6 h-6 text-accent mr-3" />
-            <h3 className="text-2xl font-poppins font-semibold text-foreground">
-              Herramientas & Tecnologías Adicionales
-            </h3>
-          </div>
-          
-          <div className="flex flex-wrap gap-3">
-            {tools.map((tool, index) => (
-              <span 
-                key={tool}
-                className="px-4 py-2 glass rounded-full text-sm font-inter font-medium text-foreground/90 hover:text-primary hover:neon-purple transition-all duration-300 cursor-default"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {tool}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>
